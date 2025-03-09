@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Let's 365 – Preise</title>
+    <title>Let's 365 – Funktionen</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
@@ -26,7 +26,7 @@
             color: #e0e0e0;
         }
 
-        /* Topbar (Exakt wie auf den anderen Seiten) */
+        /* Topbar */
         header {
             display: flex;
             justify-content: space-between;
@@ -67,71 +67,40 @@
             font-size: 18px;
             cursor: pointer;
         }
-        /* Preispläne (Karten Design) */
-        .pricing-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            justify-items: center;
-            margin-top: 50px;
-            padding: 0 5%;
-        }
 
-        .pricing-card {
+        /* Card Styling */
+        .card {
             background-color: #f7f7f7;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
             text-align: center;
-            width: 100%;
-            max-width: 320px;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        body.dark-mode .pricing-card {
+        body.dark-mode .card {
             background-color: #333;
             color: #e0e0e0;
         }
 
-        .pricing-card h2 {
+        .card h2 {
             font-size: 2rem;
             margin-bottom: 20px;
-            color: #0078d4;
         }
 
-        .pricing-card p {
+        .card p {
             font-size: 1.2rem;
             color: gray;
-            margin-bottom: 25px;
-        }
-
-        .pricing-card button {
-            padding: 12px 25px;
-            font-size: 16px;
-            background: #0078d4;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            width: 100%;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .pricing-card button:hover {
-            background: #005ea6;
-            transform: scale(1.05);
         }
 
         /* Container */
         .container {
             text-align: center;
             padding: 50px 5%;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #222;
         }
     </style>
     <script>
@@ -156,7 +125,7 @@
 </head>
 <body class="light-mode">
 
-    <!-- Topbar (Exakt wie auf den anderen Seiten) -->
+    <!-- Topbar -->
     <header>
         <div class="logo" onclick="window.location.href='index.html'">Let's <span>365</span></div>
         <nav>
@@ -169,33 +138,25 @@
         </nav>
     </header>
 
-    <!-- Preispläne -->
+    <!-- Funktionen Container -->
     <section class="container">
-        <h1>Unsere Preise</h1>
-        <div class="pricing-container">
-            <!-- Free Plan -->
-            <div class="pricing-card">
-                <h2>Free Plan</h2>
-                <p>0€/Monat</p>
-                <p>Beinhaltet die Desktop-App und alle grundlegenden Funktionen.</p>
-                <button disabled>Jetzt anmelden</button>
-            </div>
-
-            <!-- Student Plan -->
-            <div class="pricing-card">
-                <h2>Student Plan</h2>
-                <p>5€/Monat</p>
-                <p>Für Studenten – alles im Free Plan plus erweiterte Funktionen und Support.</p>
-                <button>Jetzt anmelden</button>
-            </div>
-
-            <!-- Main Plan -->
-            <div class="pricing-card">
-                <h2>Main Plan</h2>
-                <p>10€/Monat</p>
-                <p>Der komplette Funktionsumfang mit zusätzlichen Premium-Features und exklusivem Support.</p>
-                <button>Jetzt anmelden</button>
-            </div>
+        <h1>365 Preise</h1>
+        
+        <!-- Card für die Desktop-App -->
+        <div class="card">
+            <h2>Gratis</h2>
+            <p>Zugriff auf die Desktop App und vereinzelnte andere Services (0€/m)</p>
+            <button>Verwenden</button>
+        </div>
+         <div class="card">
+            <h2>365 Student</h2>
+            <p>Zugriff auf die Student App und vereinzelnte amdere Services (5€/m)</p>
+            <button>Verwenden</button>
+        </div>
+         <div class="card">
+            <h2>365 Standart</h2>
+            <p>Zugriff auf alle Services (10€/m)</p>
+            <button>Verwenden</button>
         </div>
     </section>
 
