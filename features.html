@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's 365 – Funktionen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            background: #ffffff;
+            color: #222;
+        }
+
+        body.dark-mode {
+            background: #121212;
+            color: #e0e0e0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #0078d4;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: bold;
+        }
+
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .container {
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            font-size: 1.2rem;
+            color: gray;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const themeToggle = document.getElementById("theme-toggle");
+            const currentTheme = localStorage.getItem("theme") || "light-mode";
+            document.body.classList.add(currentTheme);
+
+            themeToggle.innerText = currentTheme === "light-mode" ? "🌙" : "☀️";
+
+            themeToggle.addEventListener("click", function() {
+                document.body.classList.toggle("light-mode");
+                document.body.classList.toggle("dark-mode");
+                
+                const newTheme = document.body.classList.contains("dark-mode") ? "dark-mode" : "light-mode";
+                localStorage.setItem("theme", newTheme);
+                
+                themeToggle.innerText = newTheme === "light-mode" ? "🌙" : "☀️";
+            });
+        });
+    </script>
+</head>
+<body class="light-mode">
+
+    <header>
+        <div class="logo">Let's <span>365</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="features.html">Funktionen</a></li>
+                <li><a href="#">Kontakt</a></li>
+                <li><button id="theme-toggle">🌙</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="container">
+        <h1>Unsere Funktionen</h1>
+        <p>Die Let's 365 Desktop-App ist in Entwicklung und bald verfügbar.</p>
+    </section>
+
+</body>
+</html>
