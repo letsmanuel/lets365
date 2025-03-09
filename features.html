@@ -26,6 +26,7 @@
             color: #e0e0e0;
         }
 
+        /* Topbar */
         header {
             display: flex;
             justify-content: space-between;
@@ -37,6 +38,7 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .logo span {
@@ -66,19 +68,33 @@
             cursor: pointer;
         }
 
-        .container {
+        /* Card Styling */
+        .card {
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
             text-align: center;
-            padding: 100px 5%;
         }
 
-        .container h1 {
-            font-size: 2.5rem;
+        .card h2 {
+            font-size: 2rem;
             margin-bottom: 20px;
         }
 
-        .container p {
+        .card p {
             font-size: 1.2rem;
             color: gray;
+        }
+
+        /* Container */
+        .container {
+            text-align: center;
+            padding: 50px 5%;
         }
     </style>
     <script>
@@ -103,21 +119,29 @@
 </head>
 <body class="light-mode">
 
+    <!-- Topbar -->
     <header>
-        <div class="logo">Let's <span>365</span></div>
+        <div class="logo" onclick="window.location.href='index.html'">Let's <span>365</span></div>
         <nav>
             <ul>
-                <li><a href="index.html">Startseite</a></li>
                 <li><a href="features.html">Funktionen</a></li>
+                <li><a href="#">Preise</a></li>
                 <li><a href="#">Kontakt</a></li>
                 <li><button id="theme-toggle">🌙</button></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Funktionen Container -->
     <section class="container">
         <h1>Unsere Funktionen</h1>
-        <p>Die Let's 365 Desktop-App ist in Entwicklung und bald verfügbar.</p>
+        
+        <!-- Card für die Desktop-App -->
+        <div class="card">
+            <h2>Desktop-App</h2>
+            <p>Die Let's 365 Desktop-App ist in Entwicklung und bald verfügbar. Sie wird eine nahtlose Erfahrung zwischen deinem Desktop und unseren Cloud-Services bieten.</p>
+            <button disabled>Jetzt herunterladen (Bald verfügbar)</button>
+        </div>
     </section>
 
 </body>
