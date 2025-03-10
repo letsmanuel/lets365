@@ -24,7 +24,7 @@
 
             // Function to check if a page contains Cloudflare error text
             function isCloudflareError(html) {
-                return html.includes("Ray ID") || html.includes("Cloudflare") || html.includes("Error 503");
+                return html.includes("Ray ID") || html.includes("Cloudflare") || html.includes("Error 500");
             }
 
             // Function to check server response using CORS proxy
