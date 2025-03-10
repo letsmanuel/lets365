@@ -23,10 +23,12 @@
                 return html.includes("Ray ID") || html.includes("Cloudflare") || html.includes("Error 503");
             }
 
-            // Function to check server response
+            // Function to check server response using CORS proxy
             async function checkServer(url) {
+                const corsProxy = 'https://api.allorigins.win/raw?url='; // CORS proxy to avoid CORS issues
+
                 try {
-                    const response = await fetch(url);
+                    const response = await fetch(corsProxy + encodeURIComponent(url));
 
                     if (response.ok) {
                         const html = await response.text(); // Get the full HTML response body
