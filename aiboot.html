@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="/favicon.ico">
+    <title>Server Response Check</title>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const servers = [
+                { url: 'https://server2.letsnet.xyz', priority: 1 },
+                { url: 'https://server3.letsnet.xyz', priority: 2 },
+                { url: 'https://server1.letsnet.xyz', priority: 3 }
+            ];
+
+            let serverResponded = false;
+
+            // Function to check if a page contains Cloudflare error text
+            function isCloudflareError(html) {
+                return html.includes("Ray ID") || html.includes("Cloudflare") || html.includes("Error 503");
+            }
+
+            // Function to check server response
+            async function checkServer(url) {
+                try {
+                    const response = await fetch(url);
+
+                    if (response.ok) {
+                        const html = await response.text(); // Get the full HTML response body
+                        if (isCloudflareError(html)) {
+                            return { success: false, url: `${url} is offline (Cloudflare Error)` };
+                        }
+                        return { success: true, url }; // Server responded successfully
+                    } else if (response.status === 500) {
+                        return { success: false, url: `${url} is offline (500 Internal Server Error)` };
+                    } else {
+                        return { success: false, url: `${url} responded with status: ${response.status}` };
+                    }
+                } catch (error) {
+                    // Catch network or other fetch errors
+                    return { success: false, url: `${url} is offline (Network Error)` };
+                }
+            }
+
+            // Check all servers in order of priority
+            async function checkServers() {
+                for (const server of servers) {
+                    const result = await checkServer(server.url);
+                    if (result.success) {
+                        serverResponded = true;
+                        window.location.href = result.url; // Redirect to the working server
+                        break;
+                    }
+                    console.log(result.url); // Logging the offline servers and errors
+                }
+
+                if (!serverResponded) {
+                    // No server responded, show error page
+                    showErrorPage();
+                }
+            }
+
+            // Show error page if no server responds
+            function showErrorPage() {
+                document.body.innerHTML = '<h1>OOPS, none of our servers responded. Try again later</h1>';
+            }
+
+            // Check servers on page load
+            checkServers();
+        });
+    </script>
+</head>
+<body>
+    <h1>Checking servers...</h1>
+</body>
+</html>
