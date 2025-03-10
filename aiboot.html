@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#000000">
-
     <title>Server Response Check</title>
     <!-- A2HS meta tags -->
     <meta name="apple-mobile-web-app-title" content="Server Response Check">
     <meta name="mobile-web-app-quirks-mode" content="no">
     <meta name="mobile-web-app-capable" content="yes">
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const servers = [
@@ -19,21 +17,17 @@
                 { url: 'https://server3.letsnet.xyz', priority: 2 },
                 { url: 'https://server1.letsnet.xyz', priority: 3 }
             ];
-
             let serverResponded = false;
-
-            // Function to check if a page contains Cloudflare error text
+            // Function to check if a page contains Cloudflare error text or specific div with class 'cf-error-footer'
             function isCloudflareError(html) {
-                return html.includes("Ray ID") || html.includes("Cloudflare") || html.includes("Error 500");
+                // Check for known Cloudflare error text or presence of the error footer div
+                return html.includes("Ray ID") || html.includes("Cloudflare") || html.includes("Error 500") || html.includes('cf-error-footer');
             }
-
             // Function to check server response using CORS proxy
             async function checkServer(url) {
                 const corsProxy = 'https://api.allorigins.win/raw?url='; // CORS proxy to avoid CORS issues
-
                 try {
                     const response = await fetch(corsProxy + encodeURIComponent(url));
-
                     if (response.ok) {
                         const html = await response.text(); // Get the full HTML response body
                         if (isCloudflareError(html)) {
@@ -50,7 +44,6 @@
                     return { success: false, url: `${url} is offline (Network Error)` };
                 }
             }
-
             // Check all servers in order of priority
             async function checkServers() {
                 for (const server of servers) {
@@ -62,18 +55,15 @@
                     }
                     console.log(result.url); // Logging the offline servers and errors
                 }
-
                 if (!serverResponded) {
                     // No server responded, show error page
                     showErrorPage();
                 }
             }
-
             // Show error page if no server responds
             function showErrorPage() {
                 document.body.innerHTML = '<h1>OOPS, none of our servers responded. Try again later</h1>';
             }
-
             // Check servers on page load
             checkServers();
         });
