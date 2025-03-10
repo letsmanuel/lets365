@@ -5,11 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#000000">
+
     <title>Server Response Check</title>
     <!-- A2HS meta tags -->
     <meta name="apple-mobile-web-app-title" content="Server Response Check">
     <meta name="mobile-web-app-quirks-mode" content="no">
     <meta name="mobile-web-app-capable" content="yes">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .status {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .status.success {
+            color: green;
+        }
+
+        .status.failure {
+            color: red;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const servers = [
@@ -17,17 +79,21 @@
                 { url: 'https://server3.letsnet.xyz', priority: 2 },
                 { url: 'https://server1.letsnet.xyz', priority: 3 }
             ];
+
             let serverResponded = false;
-            // Function to check if a page contains Cloudflare error text or specific div with class 'cf-error-footer'
+
+            // Function to check if a page contains Cloudflare error text
             function isCloudflareError(html) {
-                // Check for known Cloudflare error text or presence of the error footer div
-                return html.includes("Ray ID") || html.includes("Cloudflare") || html.includes("Error 500") || html.includes('cf-error-footer');
+                return html.includes("Ray ID") || html.includes("Cloudflare") || html.includes("Error 500");
             }
+
             // Function to check server response using CORS proxy
             async function checkServer(url) {
                 const corsProxy = 'https://api.allorigins.win/raw?url='; // CORS proxy to avoid CORS issues
+
                 try {
                     const response = await fetch(corsProxy + encodeURIComponent(url));
+
                     if (response.ok) {
                         const html = await response.text(); // Get the full HTML response body
                         if (isCloudflareError(html)) {
@@ -44,32 +110,54 @@
                     return { success: false, url: `${url} is offline (Network Error)` };
                 }
             }
+
+            // Function to display the status of the servers
+            function displayStatus(statusMessage, isSuccess) {
+                const statusDiv = document.getElementById('statusMessage');
+                statusDiv.textContent = statusMessage;
+                statusDiv.className = isSuccess ? 'status success' : 'status failure';
+            }
+
             // Check all servers in order of priority
             async function checkServers() {
                 for (const server of servers) {
                     const result = await checkServer(server.url);
                     if (result.success) {
                         serverResponded = true;
-                        window.location.href = result.url; // Redirect to the working server
+                        displayStatus(`Success! Redirecting to: ${result.url}`, true); // Successful server response
+                        setTimeout(() => {
+                            window.location.href = result.url; // Redirect to the working server
+                        }, 2000); // 2 seconds delay before redirect
                         break;
+                    } else {
+                        console.log(result.url); // Logging the offline servers and errors
+                        displayStatus(result.url, false); // Show error message
                     }
-                    console.log(result.url); // Logging the offline servers and errors
                 }
+
                 if (!serverResponded) {
                     // No server responded, show error page
                     showErrorPage();
                 }
             }
+
             // Show error page if no server responds
             function showErrorPage() {
-                document.body.innerHTML = '<h1>OOPS, none of our servers responded. Try again later</h1>';
+                const errorDiv = document.getElementById('statusMessage');
+                errorDiv.innerHTML = '<h2 class="error-message">Oops! None of our servers are responding. Please try again later.</h2>';
             }
-            // Check servers on page load
+
+            // Initial check on page load
             checkServers();
         });
     </script>
 </head>
 <body>
-    <h1>Checking servers...</h1>
+    <div class="container">
+        <h1>Server Response Check</h1>
+        <p>We are checking the status of our servers...</p>
+        <div id="statusMessage" class="status">Loading...</div>
+        <button class="button" onclick="checkServers()">Retry Server Check</button>
+    </div>
 </body>
 </html>
