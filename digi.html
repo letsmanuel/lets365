@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Zusammenfassung</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f7fa;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      font-size: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    nav {
+      flex: 0 0 250px;
+      position: sticky;
+      top: 80px;
+      align-self: flex-start;
+      margin-left: auto;
+      background: #ecf0f1;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      height: fit-content;
+      animation: slideIn 0.8s ease-out;
+    }
+
+    nav h2 {
+      margin-bottom: 10px;
+    }
+
+    nav a {
+      display: block;
+      margin: 10px 0;
+      color: #2980b9;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #1abc9c;
+      transform: translateX(5px);
+    }
+
+    main {
+      flex: 1;
+      padding-right: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    section {
+      margin-bottom: 60px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    section h2 {
+      color: #34495e;
+      margin-bottom: 15px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      nav {
+        position: relative;
+        margin: 20px 0 0 0;
+      }
+
+      main {
+        padding-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Digital Zusammenfassung
+  </header>
+  <div class="container">
+    <main>
+      <section id="kapitel1">
+        <h2>Woche 1: Problematischer Start</h2>
+        <p>In Woche 1 wollten die Kinder an den Robotern weitermachen, allerdings konnte der Schlüssel zu dem Kasten nicht gefunden werden. Die Stunde ging schnell vorbei.</p>
+      </section>
+
+      <section id="kapitel2">
+        <h2>Woche 2: Fehlend</h2>
+        <p>In Woche 2 fiel Digitale Grundbildung aus.</p>
+      </section>
+
+      <section id="kapitel3">
+        <h2>Woche 3: Cybersecurity</h2>
+        <p>In der Stunde ging es um Cybersecurity. Es ging um Passwörter, und wie man sichere Passwort erstellt. Wir haben einen Arbeitspacken bekommen, der aus mehreren Seiten bestand. Es gab Seiten zu Malware, Passwortsicherheit und co. Ein Teil des Packen was Hausübung.</p>
+      </section>
+ <section id="kapitel4">
+        <h2>Woche 4: Abschluss</h2>
+        <p>In Woche 4 haben wir Cybersecurity abgeschlossen. Wir haben über verschiedene Arten von Malware geredet, und deren funktionsweise. Wir haben uns ein Video dazu angeschaut, um mehr Infos zu bekommen. Roboter wurden in keiner der 4 (3 Wochen) gemacht. Der Arbeitsauftrag wurde weiter gearbeitet. Am Ende der Stunde wurde voneinander verabschiedet.</p>
+      </section>
+    </main>
+
+    <nav>
+      <h2>Inhaltsverzeichnis</h2>
+      <a href="#kapitel1">Woche 1: Start</a>
+      <a href="#kapitel2">Woche 2: Fehlend</a>
+      <a href="#kapitel3">Woche 3: Sicherheit</a>
+		<a href="#kapitel4">Woche 4: Abschluss</a>
+    </nav>
+  </div>
+</body>
+</html>
