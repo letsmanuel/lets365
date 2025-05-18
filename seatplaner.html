@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seat Planner – A4 Landscape</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+	
+	.a4-preview {
+  width: 297mm;
+  height: 210mm;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: auto;
+  display: none; /* initial hidden */
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  row-gap: 3mm; /* Maintain vertical spacing */
+  column-gap: 3mm; /* Maintain horizontal spacing */
+  overflow: hidden; /* Prevent overflow */
+  box-sizing: border-box; /* Include padding and border in width and height */
+}
+
+.seat {
+	aspect-ratio: 1;
+  width: 100%; /* Full width of the grid cell */
+  height: 100%; /* Full height of the grid cell */
+  border-radius: 6px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+    .seat.empty { border: none; background: transparent; }
+    .seat.filled { border: none; }
+  </style>
+</head>
+<body class="bg-gray-100 p-6 flex flex-col items-center gap-6 min-h-screen">
+
+  <!-- Controls -->
+  <div class="flex flex-wrap justify-center gap-4" id="colorInputs"></div>
+  <button id="btnRender" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded">
+    Toggle Grid Preview
+  </button>
+
+  <!-- Grid -->
+  <div class="a4-preview" id="grid"></div>
+
+  <script>
+    const rows = 20, cols = 20;
+    let seats = Array.from({ length: rows }, () => Array.from({ length: cols }, () => ({ colorIndex: null })));
+    let colors = [];
+    let selectedColorIndex = null;
+
+    const grid = document.getElementById('grid');
+    const colorInputs = document.getElementById('colorInputs');
+    const btnRender = document.getElementById('btnRender');
+
+    btnRender.addEventListener('click', () => {
+      grid.style.display = grid.style.display === 'grid' ? 'none' : 'grid';
+    });
+
+    function getContrast(hex) {
+      const r = parseInt(hex.substr(1, 2), 16);
+      const g = parseInt(hex.substr(3, 2), 16);
+      const b = parseInt(hex.substr(5, 2), 16);
+      const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+      return yiq >= 128 ? '#000000' : '#ffffff';
+    }
+
+    function renderGrid() {
+      grid.innerHTML = "";
+      grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const seat = seats[r][c];
+          const div = document.createElement('div');
+          const isFilled = seat.colorIndex !== null && colors[seat.colorIndex];
+
+          div.className = `seat ${isFilled ? 'filled' : 'empty'}`;
+          if (isFilled) {
+            const col = colors[seat.colorIndex];
+            div.style.backgroundColor = col.color;
+            div.style.color = getContrast(col.color);
+            div.textContent = col.name;
+          }
+          div.addEventListener('click', () => {
+            if (selectedColorIndex === null) return;
+            seat.colorIndex = seat.colorIndex === selectedColorIndex ? null : selectedColorIndex;
+            renderGrid();
+          });
+          grid.appendChild(div);
+        }
+      }
+    }
+
+    function createColorPickers() {
+      const defaultColors = ['#f87171', '#60a5fa', '#34d399', '#fbbf24', '#a78bfa', '#f472b6'];
+      for (let i = 0; i < 6; i++) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col items-center';
+
+        const colorInput = document.createElement('input');
+        colorInput.type = 'color';
+        colorInput.value = defaultColors[i];
+        colorInput.className = 'w-10 h-10 rounded-full border';
+        colorInput.addEventListener('click', () => selectedColorIndex = i);
+        colorInput.addEventListener('input', updateColorsAndGrid);
+
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.placeholder = 'Name';
+        nameInput.className = 'mt-1 p-1 text-xs border rounded w-20 text-center';
+        nameInput.maxLength = 15;
+        nameInput.addEventListener('input', updateColorsAndGrid);
+
+        wrapper.appendChild(colorInput);
+        wrapper.appendChild(nameInput);
+        colorInputs.appendChild(wrapper);
+      }
+      updateColorsAndGrid();
+    }
+
+    function updateColorsAndGrid() {
+      const colorPickers = document.querySelectorAll('#colorInputs input[type=color]');
+      const nameInputs = document.querySelectorAll('#colorInputs input[type=text]');
+      colors = Array.from(colorPickers).map((picker, i) => ({
+        color: picker.value,
+        name: nameInputs[i].value || ''
+      }));
+      renderGrid();
+    }
+
+    createColorPickers();
+    renderGrid();
+  </script>
+</body>
+</html>
