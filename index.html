@@ -1,553 +1,192 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vironix Antivirus - Protect Your Digital Life</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <title>Portfolio - Minecraft Fabric Mod Entwickler & Webentwickler</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
   <style>
-    /* CSS Variables for light and dark modes */
-    :root {
-      --font-family: 'Poppins', sans-serif;
-      --color-bg: #ffffff;
-      --color-bg-gradient-start: #e0ebff;
-      --color-bg-gradient-end: #f7f9ff;
-      --color-primary: #111827;
-      --color-secondary: #6b7280;
-      --color-accent: #2563eb;
-      --color-accent-hover: #1d4ed8;
-      --color-card-bg: #ffffff;
-      --color-card-shadow: rgba(0,0,0,0.05);
-      --color-nav-border: #e5e7eb;
-      --color-text-light: #ffffff;
-      --radius: 12px;
-      --shadow: 0 8px 24px var(--color-card-shadow);
-      --transition-speed: 0.35s ease;
-    }
-
-    html.dark {
-      --color-bg: #121517;
-      --color-bg-gradient-start: #141a25;
-      --color-bg-gradient-end: #1e2430;
-      --color-primary: #e4e6eb;
-      --color-secondary: #9ca3af;
-      --color-accent: #3b82f6;
-      --color-accent-hover: #60a5fa;
-      --color-card-bg: #1e2228;
-      --color-card-shadow: rgba(0, 0, 0, 0.7);
-      --color-nav-border: #272b33;
-      --color-text-light: #f9fafb;
-      --shadow: 0 12px 32px var(--color-card-shadow);
-    }
-
-    /* Reset and base */
-    * {
+    /* Reset */
+    *, *::before, *::after {
       box-sizing: border-box;
+      margin: 0; padding: 0;
     }
+
     body {
-      margin: 0;
-      font-family: var(--font-family);
-      background-color: var(--color-bg);
-      background-image: linear-gradient(135deg, var(--color-bg-gradient-start), var(--color-bg-gradient-end));
-      color: var(--color-primary);
-      line-height: 1.58;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transition: background-color var(--transition-speed), color var(--transition-speed), background-image var(--transition-speed);
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #edf7ed;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: color var(--transition-speed);
-    }
-    a:hover,
-    a:focus {
-      color: var(--color-accent);
-      outline: none;
-    }
-    header {
-      position: sticky;
-      top: 0;
-      background: var(--color-bg);
-      border-bottom: 1px solid var(--color-nav-border);
-      z-index: 1000;
-      box-shadow: var(--shadow);
-      animation: slideDownFade 0.6s ease forwards;
-    }
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 1.875rem;
-      letter-spacing: -0.025em;
-      color: var(--color-primary);
-      user-select: none;
-      cursor: default;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      font-weight: 600;
-      font-size: 1rem;
-      align-items: center;
-    }
-    .nav-links a {
-      position: relative;
-      padding-bottom: 0.25rem;
-      transition: color var(--transition-speed);
-    }
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      height: 2px;
-      background: var(--color-accent);
-      transition: width var(--transition-speed);
-      border-radius: 2px;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      color: var(--color-accent);
-      outline-offset: 3px;
-      outline: 2px solid transparent;
-    }
-    .nav-links a:hover::after,
-    .nav-links a:focus::after {
-      width: 100%;
-    }
-    #theme-toggle {
-      background-color: transparent;
-      border: 2px solid var(--color-accent);
-      border-radius: var(--radius);
-      color: var(--color-accent);
-      font-weight: 600;
-      cursor: pointer;
-      padding: 0.4rem 0.9rem;
-      font-size: 0.95rem;
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-      user-select: none;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 0.4rem;
-    }
-    #theme-toggle:hover,
-    #theme-toggle:focus {
-      background-color: var(--color-accent);
-      color: var(--color-text-light);
-      outline: none;
-      transform: scale(1.1);
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      overflow: hidden;
     }
 
     main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 2rem 8rem;
-      flex-grow: 1;
+      background: rgba(0,0,0,0.45);
+      border-radius: 24px;
+      padding: 56px 48px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s ease;
     }
-    .hero {
-      text-align: center;
-      padding-bottom: 4rem;
-      position: relative;
-      overflow: hidden;
+    main:hover, main:focus-within {
+      box-shadow: 0 24px 64px rgba(0,0,0,0.8);
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: -25%;
-      left: -20%;
-      width: 140%;
-      height: 140%;
-      background: linear-gradient(45deg, rgba(37,99,235,0.12), rgba(37,99,235,0.05) 70%);
-      transform: rotate(25deg);
-      pointer-events: none;
-      z-index: 0;
-      border-radius: 30%;
-      animation: pulseGradient 6s ease-in-out infinite alternate;
-    }
-    .hero > * {
-      position: relative;
-      z-index: 1;
-    }
-    .hero h1 {
-      font-size: clamp(2.75rem, 6vw, 4.5rem);
+
+    h1 {
       font-weight: 800;
-      margin: 0 0 1.2rem;
-      color: var(--color-primary);
-      line-height: 1.05;
+      font-size: 3rem;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      text-shadow:
+        2px 2px 4px rgba(0,0,0,0.4),
+        0 0 8px #22c55e;
       user-select: none;
-      text-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
-      animation: fadeSlideUp 0.8s ease forwards;
-      opacity: 0;
-      transform: translateY(40px);
-      animation-delay: 0.15s;
-      animation-fill-mode: forwards;
     }
-    .hero p {
-      font-size: clamp(1.15rem, 1.7vw, 1.35rem);
-      color: var(--color-secondary);
-      max-width: 580px;
-      margin: 0 auto 2.5rem;
-      animation: fadeSlideUp 0.8s ease forwards;
-      animation-delay: 0.3s;
-      opacity: 0;
-      transform: translateY(40px);
-      animation-fill-mode: forwards;
-      user-select: text;
+
+    p {
+      font-weight: 500;
+      font-size: 1.3rem;
+      margin-bottom: 24px;
+      line-height: 1.5;
+      color: #d6f5d6;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }
-    .btn-primary {
-      background-color: var(--color-accent);
-      color: var(--color-text-light);
+
+    ul.projects-list {
+      list-style: none;
+      margin-bottom: 40px;
+      text-align: left;
+      padding-left: 0;
+      user-select: none;
+    }
+    ul.projects-list li {
+      background: rgba(34, 197, 94, 0.15);
+      margin-bottom: 12px;
+      padding: 14px 20px;
+      border-radius: 16px;
+      font-size: 1.1rem;
+      box-shadow: inset 0 0 8px rgba(16,185,129,0.3);
+      cursor: default;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    ul.projects-list li:hover,
+    ul.projects-list li:focus {
+      background-color: rgba(34, 197, 94, 0.35);
+      outline: none;
+    }
+
+    ul.projects-list li .material-icons {
+      color: #22c55e;
+      font-size: 28px;
+      flex-shrink: 0;
+      user-select: none;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
+    }
+
+    a.github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background-color: #22c55e;
+      color: #043927;
       font-weight: 700;
-      font-size: 1.25rem;
-      padding: 1rem 3.25rem;
-      border: none;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-size: 1.4rem;
+      padding: 18px 44px;
+      border-radius: 48px;
+      text-decoration: none;
+      box-shadow: 0 8px 28px rgba(34, 197, 94, 0.9);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
       user-select: none;
-      will-change: transform;
-      animation: fadeSlideUp 0.6s ease forwards;
-      animation-delay: 0.5s;
-      opacity: 0;
-      transform: translateY(38px);
-      animation-fill-mode: forwards;
+      cursor: pointer;
+      border: 2px solid transparent;
     }
-    .btn-primary:hover,
-    .btn-primary:focus {
-      background-color: var(--color-accent-hover);
+
+    a.github-btn:hover,
+    a.github-btn:focus {
+      background-color: #16a34a;
+      color: #d4f7d4;
+      box-shadow: 0 12px 48px rgba(22, 163, 74, 1);
       outline: none;
       transform: scale(1.05);
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.8rem;
-      padding-top: 3rem;
-      padding-bottom: 3rem;
-    }
-    .feature-card {
-      background: var(--color-card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 2.25rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      cursor: default;
-      user-select: none;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeSlideUp 0.6s ease forwards;
-      animation-fill-mode: forwards;
-    }
-    /* stagger animations for feature cards */
-    .feature-card:nth-child(1) {
-      animation-delay: 0.15s;
-    }
-    .feature-card:nth-child(2) {
-      animation-delay: 0.32s;
-    }
-    .feature-card:nth-child(3) {
-      animation-delay: 0.48s;
-    }
-    .feature-card:nth-child(4) {
-      animation-delay: 0.64s;
-    }
-    .feature-card:hover,
-    .feature-card:focus-within {
-      box-shadow: 0 20px 36px rgba(37, 99, 235, 0.3);
-      transform: translateY(-8px) scale(1.04);
-      outline: none;
-      z-index: 3;
-    }
-    .feature-icon {
-      font-size: 2.75rem;
-      color: var(--color-accent);
-      margin-bottom: 1.1rem;
-      user-select: none;
-      transition: color 0.3s ease;
-    }
-    .feature-card:hover .feature-icon,
-    .feature-card:focus-within .feature-icon {
-      color: var(--color-accent-hover);
-    }
-    .feature-title {
-      font-size: 1.375rem;
-      font-weight: 700;
-      margin: 0 0 0.6rem;
-      color: var(--color-primary);
-      user-select: text;
-    }
-    .feature-desc {
-      font-size: 1.05rem;
-      color: var(--color-secondary);
-      margin: 0;
-      flex-grow: 1;
-      line-height: 1.5;
-      user-select: text;
-    }
-    #about {
-      margin-top: 6rem;
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      padding-bottom: 3rem;
-    }
-    #about h2 {
-      font-weight: 800;
-      font-size: 2.25rem;
-      color: var(--color-primary);
-      margin-bottom: 1rem;
-      user-select: none;
-      animation: fadeSlideUp 0.7s ease forwards;
-      opacity: 0;
-      transform: translateY(40px);
-      animation-delay: 0.1s;
-      animation-fill-mode: forwards;
-    }
-    #about p {
-      color: var(--color-secondary);
-      font-size: 1.15rem;
-      line-height: 1.6;
-      user-select: text;
-      animation: fadeSlideUp 0.7s ease forwards;
-      opacity: 0;
-      transform: translateY(40px);
-      animation-delay: 0.25s;
-      animation-fill-mode: forwards;
-    }
-    #download {
-      margin-top: 6rem;
-      text-align: center;
-      padding-bottom: 3rem;
-    }
-    #download h2 {
-      font-weight: 800;
-      font-size: 2.25rem;
-      color: var(--color-primary);
-      margin-bottom: 1rem;
-      user-select: none;
-      animation: fadeSlideUp 0.7s ease forwards;
-      opacity: 0;
-      transform: translateY(40px);
-      animation-delay: 0.12s;
-      animation-fill-mode: forwards;
-    }
-    #download p {
-      color: var(--color-secondary);
-      font-size: 1.15rem;
-      margin-bottom: 2.75rem;
-      user-select: text;
-      animation: fadeSlideUp 0.7s ease forwards;
-      opacity: 0;
-      transform: translateY(40px);
-      animation-delay: 0.3s;
-      animation-fill-mode: forwards;
-    }
-    #download button {
-      animation: fadeSlideUp 0.7s ease forwards;
-      opacity: 0;
-      transform: translateY(40px);
-      animation-delay: 0.46s;
-      animation-fill-mode: forwards;
-    }
-    #download button:hover,
-    #download button:focus {
-      background-color: var(--color-accent-hover);
-      outline: none;
-      transform: scale(1.07);
-      transition: background-color 0.25s ease, transform 0.25s ease;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: var(--color-secondary);
-      border-top: 1px solid var(--color-nav-border);
-      user-select: none;
-      background-color: var(--color-bg);
-      transition: background-color var(--transition-speed), color var(--transition-speed);
+      border-color: #a7f3d0;
     }
 
-    @media (max-width: 600px) {
-      nav {
-        padding: 1rem 1.5rem;
-      }
-      .logo {
-        font-size: 1.5rem;
-      }
+    .material-icons {
+      font-size: 32px;
+      user-select: none;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+      transition: filter 0.3s ease;
+    }
+    a.github-btn:hover .material-icons,
+    a.github-btn:focus .material-icons {
+      filter: drop-shadow(0 0 4px #a7f3d0);
+    }
+
+    @media (max-width: 480px) {
       main {
-        padding: 3rem 1rem 6rem;
+        padding: 40px 28px;
+        max-width: 400px;
       }
-      .hero h1 {
-        font-size: 2.75rem;
+      h1 {
+        font-size: 2.4rem;
       }
-      .hero p {
-        font-size: 1.125rem;
-      }
-      .btn-primary {
+      p {
         font-size: 1.1rem;
-        padding: 0.9rem 2.75rem;
+        margin-bottom: 20px;
       }
-      .feature-card {
-        padding: 1.75rem 2rem;
-      }
-      #about h2, #download h2 {
-        font-size: 1.875rem;
-      }
-      #about p, #download p {
+      ul.projects-list li {
         font-size: 1rem;
+        padding: 12px 16px;
       }
-    }
-
-    /* Animations */
-    @keyframes fadeSlideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
+      a.github-btn {
+        font-size: 1.2rem;
+        padding: 16px 36px;
+        gap: 12px;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes slideDownFade {
-      from {
-        opacity: 0;
-        transform: translateY(-25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Background gradient pulse */
-    @keyframes pulseGradient {
-      0% {
-        filter: brightness(1);
-      }
-      50% {
-        filter: brightness(1.06);
-      }
-      100% {
-        filter: brightness(1);
+      .material-icons {
+        font-size: 28px;
       }
     }
   </style>
 </head>
 <body>
-  <header role="banner">
-    <nav role="navigation" aria-label="Primary Navigation">
-      <div class="logo" tabindex="0">Vironix</div>
-      <div class="nav-links" role="menubar" aria-label="Main Menu">
-        <a href="#features" role="menuitem" tabindex="0">Features</a>
-        <a href="#about" role="menuitem" tabindex="0">About</a>
-        <a href="#download" role="menuitem" tabindex="0">Download</a>
-        <button id="theme-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode" type="button" aria-pressed="false">
-          🌙
-        </button>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" role="main" aria-label="Main Hero Section">
-      <h1>Protect Your Digital Life with Vironix</h1>
-      <p>Next-generation antivirus protection combining speed, accuracy, and privacy for your peace of mind.</p>
-      <button class="btn-primary" type="button" onclick="location.href='#download'" aria-label="Get Started with Vironix">Get Started</button>
-    </section>
-
-    <section id="features" aria-label="Key Features" class="features">
-      <article class="feature-card" tabindex="0" role="region" aria-labelledby="feat1-title">
-        <div class="feature-icon" aria-hidden="true">🛡️</div>
-        <h2 id="feat1-title" class="feature-title">Real-Time Threat Detection</h2>
-        <p class="feature-desc">Instantly identify and neutralize viruses, malware, and ransomware before they harm your system.</p>
-      </article>
-      <article class="feature-card" tabindex="0" role="region" aria-labelledby="feat2-title">
-        <div class="feature-icon" aria-hidden="true">⚡</div>
-        <h2 id="feat2-title" class="feature-title">Lightning Fast Scans</h2>
-        <p class="feature-desc">Optimized scanning algorithms minimize impact on performance while maximizing security.</p>
-      </article>
-      <article class="feature-card" tabindex="0" role="region" aria-labelledby="feat3-title">
-        <div class="feature-icon" aria-hidden="true">🔒</div>
-        <h2 id="feat3-title" class="feature-title">Privacy Focused</h2>
-        <p class="feature-desc">We respect your data. All scans and updates happen securely with no personal data collection.</p>
-      </article>
-      <article class="feature-card" tabindex="0" role="region" aria-labelledby="feat4-title">
-        <div class="feature-icon" aria-hidden="true">🪟</div>
-        <h2 id="feat4-title" class="feature-title">Windows Support</h2>
-        <p class="feature-desc">Vironix is optimized exclusively for Windows to deliver the best native protection.</p>
-      </article>
-    </section>
-
-    <section id="about" aria-label="About Vironix">
-      <h2>About Vironix</h2>
-      <p>
-        Vironix is a cutting-edge antivirus solution designed for modern digital threats. Our advanced technology ensures your devices remain safe and performant, without compromises. Trusted by thousands worldwide.
-      </p>
-    </section>
-
-    <section id="download" aria-label="Download Vironix">
-      <h2>Download Vironix</h2>
-      <p>Available exclusively for Windows. Secure your device today!</p>
-      <button class="btn-primary" type="button" onclick="window.location.href = 'https://github.com/letsmanuel/lets365/raw/refs/heads/main/VironixSetup.exe'" aria-label="Download Vironix antivirus for Windows">Download Now</button>
-    </section>
+  <main role="main" aria-label="Portfolio Startseite" tabindex="0">
+    <h1>Willkommen!</h1>
+    <p>
+      Ich bin leidenschaftlicher Minecraft Fabric Mod Entwickler<br />
+      und begeisterter Webentwickler (HTML, CSS, JS &amp; PHP).
+    </p>
+    <ul class="projects-list" aria-label="Liste meiner Projekte">
+      <li tabindex="0">
+        <span class="material-icons" aria-hidden="true">extension</span>
+        Industrium - Minecraft Fabric Mod
+      </li>
+      <li tabindex="0">
+        <span class="material-icons" aria-hidden="true">payment</span>
+        Member Area mit Stripe Integration
+      </li>
+    </ul>
+    <a href="https://github.com/your-username" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Besuche mein GitHub Profil">
+      <span class="material-icons" aria-hidden="true">code</span> Mein GitHub
+    </a>
   </main>
-
-  <footer role="contentinfo">&copy; 2025 Vironix. All rights reserved.</footer>
-
-  <script>
-    // Dark mode toggle handling
-    (function() {
-      const themeToggle = document.getElementById('theme-toggle');
-      const rootElem = document.documentElement;
-      const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-      function setTheme(dark) {
-        if (dark) {
-          rootElem.classList.add('dark');
-          themeToggle.textContent = '☀️';
-          themeToggle.setAttribute('aria-pressed', 'true');
-          localStorage.setItem('vironix-theme', 'dark');
-        } else {
-          rootElem.classList.remove('dark');
-          themeToggle.textContent = '🌙';
-          themeToggle.setAttribute('aria-pressed', 'false');
-          localStorage.setItem('vironix-theme', 'light');
-        }
-      }
-
-      // Initialize theme
-      const savedTheme = localStorage.getItem('vironix-theme');
-      if (savedTheme === 'dark') {
-        setTheme(true);
-      } else if (savedTheme === 'light') {
-        setTheme(false);
-      } else {
-        setTheme(userPrefersDark);
-      }
-
-      // Toggle event
-      themeToggle.addEventListener('click', () => {
-        setTheme(rootElem.classList.contains('dark') === false);
-      });
-    })();
-  </script>
 </body>
 </html>
+
