@@ -3,189 +3,340 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Paul Stiassny</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet"
-  />
+  <title>letsmanuel</title>
+
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
   <style>
+    /* Reset */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0; padding: 0;
     }
 
-    body {
+    html, body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, #059669, #10b981);
-      color: #edf7ed;
-      min-height: 100vh;
+      color: #e6f4ea;
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    a {
+      color: #bbf7d0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover, a:focus {
+      color: #22c55e;
+      outline: none;
+      text-decoration: underline;
+    }
+
+    /* Container max width */
+    .container {
+      max-width: 1100px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      background: rgba(5, 150, 105, 0.9);
+      padding: 18px 20px;
+      box-shadow: 0 3px 12px rgb(5 150 105 / 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      user-select: none;
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      padding: 20px;
+    }
+    header h1 {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #d9f99d;
+      letter-spacing: 0.07em;
+      user-select: text;
+    }
+    nav {
+      display: flex;
+      gap: 28px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    nav a {
+      padding: 6px 12px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      background-color: rgba(210, 255, 202, 0.3);
+      color: #0f5132;
+      outline-offset: 3px;
+      outline: 2px solid #bbf7d0;
+    }
+
+    /* Intro Section */
+    section#about {
+      padding: 80px 0 60px 0;
       text-align: center;
-      overflow: hidden;
     }
-
-    main {
-      background: rgba(0,0,0,0.45);
-      border-radius: 24px;
-      padding: 56px 48px;
-      max-width: 480px;
-      width: 100%;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
-      backdrop-filter: blur(12px);
-      transition: box-shadow 0.3s ease;
-    }
-    main:hover, main:focus-within {
-      box-shadow: 0 24px 64px rgba(0,0,0,0.8);
-    }
-
-    h1 {
+    section#about h2 {
       font-weight: 800;
       font-size: 3rem;
-      margin-bottom: 16px;
-      letter-spacing: 0.05em;
-      text-shadow:
-        2px 2px 4px rgba(0,0,0,0.4),
-        0 0 8px #22c55e;
-      user-select: none;
+      margin-bottom: 28px;
+      color: #bbf7d0;
+      letter-spacing: 0.1em;
+      user-select: text;
+      text-shadow: 1.5px 1.5px 4px rgb(0 0 0 / 0.3);
     }
-
-    p {
+    section#about p {
       font-weight: 500;
       font-size: 1.3rem;
-      margin-bottom: 24px;
-      line-height: 1.5;
+      max-width: 720px;
+      margin: 0 auto;
       color: #d6f5d6;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      line-height: 1.7;
+      user-select: text;
+      text-shadow: 1px 1px 2px rgb(0 0 0 / 0.25);
     }
 
-    ul.projects-list {
-      list-style: none;
-      margin-bottom: 40px;
-      text-align: left;
-      padding-left: 0;
+    /* Projects Section */
+    section#projects {
+      background: rgba(15, 68, 40, 0.35);
+      border-radius: 20px;
+      padding: 60px 24px;
+      margin-bottom: 56px;
+      box-shadow: 0 12px 36px rgb(5 150 105 / 0.6);
       user-select: none;
     }
-    ul.projects-list li {
-      background: rgba(34, 197, 94, 0.15);
-      margin-bottom: 12px;
-      padding: 14px 20px;
+    section#projects h2 {
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #bbf7d0;
+      margin-bottom: 48px;
+      letter-spacing: 0.07em;
+      user-select: text;
+      text-shadow: 1px 1px 3px rgb(0 0 0 / 0.25);
+    }
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .project {
+      background: #064e3b;
       border-radius: 16px;
-      font-size: 1.1rem;
-      box-shadow: inset 0 0 8px rgba(16,185,129,0.3);
-      cursor: default;
-      transition: background-color 0.3s ease;
+      box-shadow: 0 8px 22px rgb(16 185 129 / 0.5);
+      padding: 24px 28px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 20px;
+      transition: background-color 0.3s ease;
+      cursor: default;
     }
-    ul.projects-list li:hover,
-    ul.projects-list li:focus {
-      background-color: rgba(34, 197, 94, 0.35);
+    .project:hover,
+    .project:focus {
+      background-color: #095a46;
       outline: none;
     }
-
-    ul.projects-list li .material-icons {
+    .project-icon {
+      font-size: 48px;
       color: #22c55e;
-      font-size: 28px;
-      flex-shrink: 0;
+      filter: drop-shadow(0 0 3px rgb(34 197 94 / 0.6));
       user-select: none;
-      filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
+      flex-shrink: 0;
+    }
+    .project-info {
+      flex: 1;
+      text-align: left;
+      user-select: text;
+    }
+    .project-info h3 {
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      color: #bbf7d0;
+      letter-spacing: 0.02em;
+    }
+    .project-info p {
+      font-weight: 400;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #d1f5d2;
     }
 
-    a.github-btn {
+    /* GitHub Button Section */
+    section#github-link {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    section#github-link a.github-btn {
+      background-color: #1f2937;
+      color: #bbf7d0;
+      font-weight: 700;
+      font-size: 1.6rem;
+      padding: 18px 48px;
+      border-radius: 48px;
+      text-decoration: none;
+      box-shadow: 0 6px 26px rgb(34 197 94 / 0.9);
       display: inline-flex;
       align-items: center;
       gap: 16px;
-      background-color: #22c55e;
-      color: #043927;
-      font-weight: 700;
-      font-size: 1.4rem;
-      padding: 18px 44px;
-      border-radius: 48px;
-      text-decoration: none;
-      box-shadow: 0 8px 28px rgba(34, 197, 94, 0.9);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      transition:
+        background-color 0.3s ease,
+        transform 0.25s ease,
+        box-shadow 0.3s ease;
       user-select: none;
       cursor: pointer;
-      border: 2px solid transparent;
+      border: 3px solid transparent;
     }
-
-    a.github-btn:hover,
-    a.github-btn:focus {
-      background-color: #16a34a;
-      color: #d4f7d4;
-      box-shadow: 0 12px 48px rgba(22, 163, 74, 1);
+    section#github-link a.github-btn:hover,
+    section#github-link a.github-btn:focus {
+      background-color: #22c55e;
+      color: #144620;
+      box-shadow: 0 10px 40px rgb(22 163 74 / 1);
       outline: none;
-      transform: scale(1.05);
+      transform: scale(1.08);
       border-color: #a7f3d0;
     }
+    section#github-link a.github-btn .material-icons {
+      font-size: 36px;
+      filter: drop-shadow(0 0 3px #a7f3d0);
+    }
 
-    .material-icons {
-      font-size: 32px;
+    /* Footer */
+    footer {
+      background: rgba(5,150,105,0.9);
+      color: #d9f99d;
+      text-align: center;
+      padding: 20px 12px;
+      font-size: 0.95rem;
+      border-top: 2px solid #bbf7d0;
       user-select: none;
-      filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
-      transition: filter 0.3s ease;
-    }
-    a.github-btn:hover .material-icons,
-    a.github-btn:focus .material-icons {
-      filter: drop-shadow(0 0 4px #a7f3d0);
     }
 
-    @media (max-width: 480px) {
-      main {
-        padding: 40px 28px;
-        max-width: 400px;
+    /* Responsive */
+    @media (max-width: 720px) {
+      .projects-list {
+        gap: 24px;
       }
-      h1 {
-        font-size: 2.4rem;
-      }
-      p {
-        font-size: 1.1rem;
-        margin-bottom: 20px;
-      }
-      ul.projects-list li {
-        font-size: 1rem;
-        padding: 12px 16px;
-      }
-      a.github-btn {
-        font-size: 1.2rem;
-        padding: 16px 36px;
+      .project {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 12px;
       }
-      .material-icons {
-        font-size: 28px;
+      .project-icon {
+        font-size: 42px;
+      }
+      section#gitHub-link a.github-btn {
+        font-size: 1.4rem;
+        padding: 16px 40px;
+      }
+      section#github-link a.github-btn .material-icons {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      header .container {
+        flex-direction: column;
+        gap: 12px;
+      }
+      header h1 {
+        font-size: 1.3rem;
+      }
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+      }
+      section#about h2 {
+        font-size: 2.4rem;
+      }
+      section#about p {
+        font-size: 1.1rem;
+      }
+      .project-info h3 {
+        font-size: 1.3rem;
+      }
+      .project-info p {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <main role="main" aria-label="Portfolio Startseite" tabindex="0">
-    <h1>Willkommen!</h1>
-    <p>
-      Ich bin leidenschaftlicher Minecraft Fabric Mod Developer<br />
-      und Webentwickler (HTML, CSS, JS &amp; mehr).
-    </p>
-    <ul class="projects-list" aria-label="Liste meiner Projekte">
-      <li tabindex="0">
-        <span class="material-icons" aria-hidden="true">extension</span>
-        Industrium - Minecraft Fabric Mod
-      </li>
-      <li tabindex="0">
-        <span class="material-icons" aria-hidden="true">payment</span>
-        Member Area mit Stripe Integration
-      </li>
-    </ul>
-    <a href="https://github.com/letsmanuel/" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Besuche mein GitHub Profil">
-      <span class="material-icons" aria-hidden="true">code</span> Mein GitHub
-    </a>
+  <header role="banner">
+    <div class="container">
+      <h1 tabindex="0">letsmanuel</h1>
+      <nav aria-label="Hauptnavigation">
+        <a href="#about" tabindex="0">Über mich</a>
+        <a href="#projects" tabindex="0">Projekte</a>
+        <a href="#github-link" tabindex="0">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section id="about" tabindex="0" aria-label="Über mich">
+      <h2>Über mich</h2>
+      <p>
+        Ich bin leidenschaftlicher Minecraft Fabric Mod Entwickler und begeisterter Webentwickler mit Kenntnissen in HTML, CSS, JavaScript und PHP.<br />
+        Meine Projekte verbinden Gaming mit moderner Webtechnologie.
+      </p>
+    </section>
+
+    <section id="projects" tabindex="0" aria-label="Projekte">
+      <h2>Projekte</h2>
+      <div class="projects-list">
+        <article class="project" tabindex="0" aria-label="Projekt Industrium">
+          <span class="material-icons project-icon" aria-hidden="true">extension</span>
+          <div class="project-info">
+            <h3>Industrium</h3>
+            <p>Ein umfangreicher Minecraft Fabric Mod, der Gameplay mit neuen Mechaniken und Features erweitert.</p>
+          </div>
+        </article>
+
+        <article class="project" tabindex="0" aria-label="Projekt Member Area mit Stripe Integration">
+          <span class="material-icons project-icon" aria-hidden="true">payment</span>
+          <div class="project-info">
+            <h3>Member Area mit Stripe</h3>
+            <p>Web-Anwendung mit bezahltem Mitgliederbereich, Firebase, Firestore und viel Schmerz ;)</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="github-link" tabindex="0" aria-label="GitHub Profil">
+      <a href="https://github.com/letsmanuel" target="_blank" rel="noopener noreferrer" class="github-btn" aria-label="Besuche mein GitHub Profil">
+        <span class="material-icons" aria-hidden="true">code</span>
+        Mein GitHub
+      </a>
+    </section>
   </main>
+
+  <footer role="contentinfo">
+    &copy; 2025 letsmanuel. Alle Rechte vorbehalten.
+  </footer>
 </body>
 </html>
-
