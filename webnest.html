@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Webnest – Starte jetzt</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #007cf0, #00dfd8);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+    header {
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+    }
+    header a {
+      color: #fff;
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      transition: background 0.3s ease;
+    }
+    header a:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+    .button-container {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      background-color: #ffffff;
+      color: #007cf0;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: #e0f7ff;
+      transform: scale(1.05);
+    }
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/privacy">Datenschutzerklärung</a>
+  </header>
+  <h1>Willkommen bei Webnest</h1>
+  <p>Starte dein Hosting-Projekt jetzt oder sieh dir ein Beispiel an. Schnell. Sicher. Kostenlos.</p>
+  <div class="button-container">
+    <a href="https://365.letsnet.xyz/webnest-getstarted.html" class="btn">Loslegen</a>
+    <a href="https://webnest-hosting.vercel.app/view/example" class="btn">Beispiel ansehen</a>
+  </div>
+  <footer>
+    © 2025 Webnest. Alle Rechte vorbehalten.
+    <a href="https://365.letsnet.xyz/privacy.html">Datenschutz</a>
+  </footer>
+</body>
+</html>
