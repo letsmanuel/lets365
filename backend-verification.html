@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Heartbeat Monitor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f0f4f8;
+      color: #333;
+    }
+    #status {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Webnest Backend Heartbeat</h1>
+  <div id="status">Loading...</div>
+
+  <script>
+    async function fetchHeartbeat() {
+      try {
+        const res = await fetch('https://webnest.onrender.com/heartbeat');
+        if (!res.ok) throw new Error('Network response was not ok');
+        const data = await res.json();
+        document.getElementById('status').textContent = 
+          `Backend status: ${data.status} at ${data.timestamp}`;
+      } catch (err) {
+        document.getElementById('status').textContent = 
+          `Failed to fetch heartbeat: ${err.message}`;
+      }
+    }
+
+    fetchHeartbeat();
+    setInterval(fetchHeartbeat, 1000);
+  </script>
+</body>
+</html>
